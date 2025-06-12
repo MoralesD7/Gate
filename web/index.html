@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Validación</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/Registro.css" type="text/css">
+</head>
+<body>
+   <div class="cont_principal">
+     <div class="letras_logo">
+        <div>
+            
+        </div>
+        <div class="logo_imagen">
+
+        </div>
+    </div>
+    <form action="RegistroServlet" method="post" id="Formulario" >
+    <div class="matricula">
+        <label>Matricula:</label>
+        <input type="text" id="matricula" name="matricula">
+        <br>
+        <span id="matricula_js"></span>
+    </div>
+    <div class="nombre">
+        <label>Nombre:</label>
+        <input type="text" id="nombre" name="nombre">
+        <br>
+        <span id="nombre_js"></span>
+    </div>
+    <div class="apellido">
+        <label>Apellido:</label>
+        <input type="text" id="apellido" name="apellido">
+        <span id="apellido_js"></span>
+    </div>
+    <div class="email">
+        <label>Correo electrónico:</label>
+        <input type="text" id="email" name="email">
+        <span id="email_js"></span>
+    </div>
+    <div class="contraseña">
+        <label>Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña">
+        <span id="contraseña_js"></span>
+    </div>
+    <div>
+        <input type="submit" value="Iniciar sesión">
+    </div>
+</form>
+
+    <script src="JS/validacion_login.js"></script>
+</body>
+</html>
