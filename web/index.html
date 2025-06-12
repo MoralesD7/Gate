@@ -1,54 +1,70 @@
+<!---->
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Validación</title>
+    <title>Gate</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/Registro.css" type="text/css">
 </head>
+
 <body>
-   <div class="cont_principal">
-     <div class="letras_logo">
-        <div>
-            
+    <div class="cont_principal">
+        <!--Caja de titulo y logo-->
+        <div class="letras_logo">
+            <div>
+                <h1 class="nombre_proyecto">Gate</h1>
+            </div>
+            <div class="logo_imagen">
+                <img src="Images/logo.png" />
+            </div>
         </div>
-        <div class="logo_imagen">
-
+        <div class="Contenedor_forms">
+            <div class="bienvenida">
+                <h1>Registrate</h1>
+            </div>
+            <!--Caja del forms-->
+            <div class="div_forms">
+                <form action="RegistroServlet" method="post" id="Formulario">
+                    <div class="matricula">
+                        <label>Matricula:</label>
+                        <input type="text" id="matricula" name="matricula">
+                        <br>
+                        <span id="matricula_js"></span>
+                    </div>
+                    <div class="nombre">
+                        <label>Nombre(s):</label>
+                        <input type="text" id="nombre" name="nombre">
+                        <br>
+                        <span id="nombre_js"></span>
+                    </div>
+                    <div class="apellido">
+                        <label>Apellidos:</label>
+                        <input type="text" id="apellido" name="apellido">
+                        <span id="apellido_js"></span>
+                    </div>
+                    <div class="email">
+                        <label>Correo electrónico:</label>
+                        <input type="text" id="email" name="email">
+                        <span id="email_js"></span>
+                    </div>
+                    <div class="contraseña">
+                        <label>Contraseña:</label>
+                        <input type="password" id="password" name="password">
+                        <span id="contraseña_js"></span>
+                    </div>
+                    <div>
+                        <input type="submit" value="Iniciar sesión">
+                    </div>
+                </form>
+            </div>
+            <div class="inicar_sesion">
+                <a href="">Ya tengo una cuenta</a>
+            </div>
         </div>
     </div>
-    <form action="RegistroServlet" method="post" id="Formulario" >
-    <div class="matricula">
-        <label>Matricula:</label>
-        <input type="text" id="matricula" name="matricula">
-        <br>
-        <span id="matricula_js"></span>
-    </div>
-    <div class="nombre">
-        <label>Nombre:</label>
-        <input type="text" id="nombre" name="nombre">
-        <br>
-        <span id="nombre_js"></span>
-    </div>
-    <div class="apellido">
-        <label>Apellido:</label>
-        <input type="text" id="apellido" name="apellido">
-        <span id="apellido_js"></span>
-    </div>
-    <div class="email">
-        <label>Correo electrónico:</label>
-        <input type="text" id="email" name="email">
-        <span id="email_js"></span>
-    </div>
-    <div class="contraseña">
-        <label>Contraseña:</label>
-        <input type="password" id="contraseña" name="contraseña">
-        <span id="contraseña_js"></span>
-    </div>
-    <div>
-        <input type="submit" value="Iniciar sesión">
-    </div>
-</form>
-
-    <script src="JS/validacion_login.js"></script>
+    <script src="JS/Validacion_registro.js"></script>
 </body>
+
 </html>

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package Controller;
 
 import DAO_impl.AlumnoDAOI;
@@ -15,13 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author omaralejandromoralesdiaz
- */
 public class RegistroServlet extends HttpServlet {
-            String variable =System.getProperty("DB_USER");
-
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -49,6 +39,7 @@ public class RegistroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         //Variables 
         String matricula, nombre, apellido, email, contraseña;
         System.out.println("entro a do post ");
@@ -57,11 +48,9 @@ public class RegistroServlet extends HttpServlet {
         nombre = request.getParameter("nombre");
         apellido = request.getParameter("apellido");
         email = request.getParameter("email");
-        contraseña = request.getParameter("contraseña");
-
+        contraseña = request.getParameter("password");
+        
         //creacion de obj e impl de metodo
-        
-        
         Alumno alumno = new Alumno(matricula, nombre, apellido, email, contraseña);
         AlumnoDAOI alumnoDAO_implementacion = new AlumnoDAOI();
         alumnoDAO_implementacion.Agregar_alumno(alumno);
