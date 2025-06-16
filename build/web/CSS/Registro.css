@@ -1,2 +1,137 @@
-body { min-height: 100vh; }
-    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    width: 100%;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    background-color: white;
+}
+
+/* Lado izquierdo */
+.left {
+    background-color: white;
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.logo-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 64px;
+    margin-bottom: 40px;
+}
+
+.hourglass {
+    max-width: 70%; /* más grande */
+    height: auto;
+}
+
+/* Lado derecho */
+.right {
+    background-color: #d9fafa;
+    flex: 1;
+    min-width: 300px;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-box {
+    width: 100%;
+    max-width: 350px;
+}
+
+.form-header {
+    background-color: #a2edea;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.btn {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background-color: #ddd;
+}
+
+.login-link {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left, .right {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .hourglass {
+        max-width: 150px;
+    }
+
+    .form-box {
+        max-width: 100%;
+    }
+}

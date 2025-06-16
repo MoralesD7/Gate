@@ -21,8 +21,8 @@ public   class Conexion {
             Class.forName("com.mysql.cj.jdbc.Driver");
             cx = (Connection) DriverManager.getConnection(URL,USER,PASSWORD);
             if(cx== null){
-                System.out.println("fallasteXD");
-            }else{System.out.println("se logro y no hay problema ");}
+                System.out.println("La conexion a la bd no se completo con exito");
+            }else{System.out.println("Conexion exitosa");}
         }catch(Exception e ){
                  e.printStackTrace();  
         }

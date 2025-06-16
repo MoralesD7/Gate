@@ -10,7 +10,9 @@ public class Tarea {
     private String fecha_inicio;
     private String fecha_finalizacion;
     private String prioridad;
-
+    
+    public Tarea(){}
+    
     public Tarea(String nombre_tarea, String descripcion, String fecha_inicio, String fecha_finalizacion, String prioridad) {
         this.nombre_tarea = nombre_tarea;
         this.descripcion = descripcion;

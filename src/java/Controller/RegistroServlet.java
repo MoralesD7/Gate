@@ -2,32 +2,17 @@ package Controller;
 
 import DAO_impl.AlumnoDAOI;
 import Model.Alumno;
-import static Config.Conexion.getConnection;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Properties;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class RegistroServlet extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegistroServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegistroServlet at " + request.getParameter("nombre:") + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     @Override
@@ -39,22 +24,36 @@ public class RegistroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         response.setContentType("text/html;charset=UTF-8");
-        //Variables 
+
+        //Var 
         String matricula, nombre, apellido, email, contraseña;
+        RequestDispatcher rd;
         System.out.println("entro a do post ");
+
         //get datos 
         matricula = request.getParameter("matricula");
         nombre = request.getParameter("nombre");
         apellido = request.getParameter("apellido");
         email = request.getParameter("email");
         contraseña = request.getParameter("password");
+
+        //creacion de obj implementacion
+        AlumnoDAOI alumno_DAO_I = new AlumnoDAOI();
         
-        //creacion de obj e impl de metodo
-        Alumno alumno = new Alumno(matricula, nombre, apellido, email, contraseña);
-        AlumnoDAOI alumnoDAO_implementacion = new AlumnoDAOI();
-        alumnoDAO_implementacion.Agregar_alumno(alumno);
-        /*
+        //insercion de usuario a bd o rechazo por email usado 
+        if (!alumno_DAO_I.Verificacion_registro(email)) {
+            Alumno alumno = new Alumno(matricula, nombre, apellido, email, contraseña);
+            alumno_DAO_I.Agregar_alumno(alumno);
+        }else{
+            String advertencia ="El correo ya esta en uso ";
+            request.setAttribute("advertencia",advertencia);
+            rd= request.getRequestDispatcher("/Vistas/Registro.jsp");
+            rd.forward(request, response);
+        }
+
+        /*VERIFICACION SI SE RECOLECTARON DE MANERA CORRECTA LAS VARIABLES DE ENTORNO 
         String USER = System.getProperty("DB_USER");
         String PASSWORD = System.getProperty("DB_PASSWORD");
         String BD_NAME = System.getProperty("DB_G_NAME");
@@ -63,7 +62,6 @@ public class RegistroServlet extends HttpServlet {
         String URL = "jdbc:mysql://"+HOST+":"+PORT+"/"+BD_NAME+"?autoReconnect=true&useSSL=false";
         System.out.println("\n"+USER+"\n"+PASSWORD+"\n"+BD_NAME+"\n"+HOST+"\n"+PORT+"\n"+URL);
         getConnection();*/
-
     }
 
     @Override

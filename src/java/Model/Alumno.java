@@ -12,6 +12,7 @@ public class Alumno {
     private String contraseña;
     
     public Alumno(){}
+    
     public Alumno(String matricula, String nombre, String apellido, String email, String contraseña) {
         this.matricula = matricula;
         this.nombre = nombre;

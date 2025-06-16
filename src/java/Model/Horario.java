@@ -4,35 +4,51 @@
  */
 package Model;
 
+import java.util.List;
+
 
 public class Horario {
-    private String materia ; 
-    private String date;
+    private String hora_inicio;
+    private String hora_termino;
+    private List<Dia> dia ;
 
-    public Horario(String materia, String date) {
-        this.materia = materia;
-        this.date = date;
+    public Horario(){}
+
+    public Horario(String hora_inicio, String hora_termino, List<Dia> dia) {
+        this.hora_inicio = hora_inicio;
+        this.hora_termino = hora_termino;
+        this.dia = dia;
     }
 
-    public String getMateria() {
-        return materia;
+    public String getHora_inicio() {
+        return hora_inicio;
     }
 
-    public void setMateria(String materia) {
-        this.materia = materia;
+    public void setHora_inicio(String hora_inicio) {
+        this.hora_inicio = hora_inicio;
     }
 
-    public String getDate() {
-        return date;
+    public String getHora_termino() {
+        return hora_termino;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setHora_termino(String hora_termino) {
+        this.hora_termino = hora_termino;
+    }
+
+    public List<Dia> getDia() {
+        return dia;
+    }
+
+    public void setDia(List<Dia> dia) {
+        this.dia = dia;
     }
 
     @Override
     public String toString() {
-        return "Horario{" + "materia=" + materia + ", date=" + date + '}';
+        return "Horario{" + "hora_inicio=" + hora_inicio + ", hora_termino=" + hora_termino + ", dia=" + dia + '}';
     }
+    
+    
     
 }

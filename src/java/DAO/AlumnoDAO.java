@@ -10,7 +10,8 @@ public interface AlumnoDAO {
     
     public void Agregar_alumno(Alumno a );
     public void Mostrar_lista_alumnos();
-    public Alumno Mostrar_alumno(String matricula);
+    public boolean Verificacion_registro(String email);
+    public boolean Verificacion_login(String email,String password);
     public void Editar_alumno(String matricula);
     public void Eliminar_alumno(String matricula);
         
