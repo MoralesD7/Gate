@@ -80,23 +80,6 @@ public class AlumnoDAOI implements AlumnoDAO {
     public void Eliminar_alumno(String matricula) {
 
     }
-
-   
-    /*
-    ------MAIN PARA INSERCION DE ALUMNO-------------------
-    public static void main(String[] args) {
-        Alumno novato = new Alumno("0000500000", "Ale", "new", "breaik046@gmail.com", "Readings9");
-        AlumnoDAOI alumno = new AlumnoDAOI();
-        alumno.Agregar_alumno(novato);
-    --------MAIN PARA VERFICACION DE ALUMNO REGISTRO--------
-     public static void main(String[] args) {
-        AlumnoDAOI alumno = new AlumnoDAOI();
-        System.out.println(alumno.Verificacion_alumno("breakboy@gmail.com"));
-    }
-    }
-    */
-    
-
     @Override
     public boolean Verificacion_registro(String email) {
         boolean encontrado = false ;
@@ -122,46 +105,73 @@ public class AlumnoDAOI implements AlumnoDAO {
     }
 
     @Override
-    public boolean Verificacion_login(String email, String password) {
+    public String Verificacion_login(String email, String password) {
+        //seran 3 casos , NO encontrado , segundo , Encontrado pero contraseña erronea 
+        String cadena  = "";
         AlumnoDAOI alumnito = new AlumnoDAOI();
         boolean validado = false ;
         cx = getConnection();
         consulta = "SELECT M_alu_id FROM M_Alumno WHERE M_alu_email = ? ";
-        con_aux ="SELECT T_tok_token FROM E_Token WHERE M_alu_id =? ";
+        con_aux ="SELECT E_tok_token FROM E_Token WHERE M_alu_id = ? ";
 
         try{
+            //preparo la primer consulta para veri el correo
             ps = cx.prepareStatement(consulta);
             ps.setString(1, email);
             rs = ps.executeQuery();
             if(rs.next()){
-                //id que ayudara a la consulta del token 
-                String id = rs.getString(1);
-                ps = cx.prepareStatement(con_aux);
-                ps.setString(1, id);
-                rs = ps.executeQuery();
-                if(rs.next()){
-                    
-                }else{
-                    
+                //id que ayudara a saber el token 
+                String id = rs.getString(1);//obtiene el id de el usuario 
+                
+                System.out.println("el id del usuario fue :"+id);
+                
+                ps = cx.prepareStatement(con_aux);//realiza la consulta 
+                ps.setString(1, id);//asgina el valor del id a la consulta 
+                System.out.println(ps);
+                rs = ps.executeQuery();//ejecuta la consulta 
+                if(rs.next()){            
+                    if(rs.getString(1).equals(password)){
+                        cadena ="LOGEOCORRECTO";
+                        return cadena ;
+                    }else{
+                         cadena ="PASSINCORRECTA";
+                    return cadena;
+                    }
                 }
             }else{
-                //no es solo una cuestion de si el alumno esta o no esta si no que el correo y contraseña coincidan
-                //entonces el metodo como tal no tendria por que mandar un solo boolean si no una cadena que indique
-                //cual es el caso tanto si esta registrado como si los valores coindicen fuaaaaaaaa
+                //Aqui verifico si le correo esta dentro de la bd si no esta pues da error de no encontrado 
+                cadena ="NOENCONTRADO";
+                return cadena;
             }
         }
         catch(SQLException ex){
             System.err.println("Error"+ex);
         }
-        return validado ;
+        return cadena;
     }
+    
+    /*
+    ------MAIN PARA INSERCION DE ALUMNO-------------------
+    public static void main(String[] args) {
+        Alumno novato = new Alumno("0000500000", "Ale", "new", "breaik046@gmail.com", "Readings9");
+        AlumnoDAOI alumno = new AlumnoDAOI();
+        alumno.Agregar_alumno(novato);
+    --------MAIN PARA VERFICACION DE ALUMNO REGISTRO--------
+     public static void main(String[] args) {
+        AlumnoDAOI alumno = new AlumnoDAOI();
+        System.out.println(alumno.Verificacion_alumno("breakboy@gmail.com"));
+        }
+    }
+    --------MAIN PARA LOGEO DE ALUMNO-------------------
     public static void main(String[] args) {
         AlumnoDAOI alumno = new AlumnoDAOI();
         String correo = "breakboy046@gmail.com";
-        String contraseña ="Readings";
-        alumno.Verificacion_login(correo,contraseña);
+        String contraseña ="Reading";
+        String recuperacion = alumno.Verificacion_login(correo,contraseña);
+        System.out.println(recuperacion);
 
     }
+    */
     
 
 }

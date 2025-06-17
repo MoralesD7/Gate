@@ -1,19 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package DAO;
 
 import Model.Alumno;
 
 public interface AlumnoDAO {
-    
-    public void Agregar_alumno(Alumno a );
-    public void Mostrar_lista_alumnos();
-    public boolean Verificacion_registro(String email);
-    public boolean Verificacion_login(String email,String password);
-    public void Editar_alumno(String matricula);
-    public void Eliminar_alumno(String matricula);
+    //para programa actual metodos terminados
+    public void Agregar_alumno(Alumno a );//completado 
+    public void Mostrar_lista_alumnos();//incompleto sin modulo de admin
+    public boolean Verificacion_registro(String email);//completado(verificacion de si el alumno ya esta logeado)
+    public String Verificacion_login(String email,String password);//completado(veri si no esta , si esta pero con pass incorrecta)
+    public void Editar_alumno(String matricula);//incompleto sin modulo de admin
+    public void Eliminar_alumno(String matricula);//incompleto sin modulo de admin
         
     
 }
