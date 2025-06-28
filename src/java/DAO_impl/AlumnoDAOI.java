@@ -96,7 +96,6 @@ public class AlumnoDAOI implements AlumnoDAO {
         }
         return encontrado;
     }
-
     @Override
     public String Verificacion_login(String email, String password) {
         //seran 3 casos , NO encontrado , Encontrado pero contraseña erronea ,encontrado y verificado
@@ -146,7 +145,7 @@ public class AlumnoDAOI implements AlumnoDAO {
         }
         return cadena;
     }
-      @Override
+    @Override
     public Alumno Busqueda_alumno(String email) {
         Alumno alumno = null;
         consulta = "SELECT * FROM M_Alumno WHERE M_alu_email = ?";
@@ -196,10 +195,12 @@ public class AlumnoDAOI implements AlumnoDAO {
         String recuperacion = alumno.Verificacion_login(correo,contraseña);
         System.out.println(recuperacion);
     }
-    */
+    --------MAIN PARA LOGEO DE ALUMNO_2-------------------
     public static void main(String[] args) {
         AlumnoDAOI obj = new AlumnoDAOI();
-        String correo = "falso@gmail.com";
+        String correo = "breakboy046@gmail.com";
         obj.Busqueda_alumno(correo);
     }
+    */
+    
 }

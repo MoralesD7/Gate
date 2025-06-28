@@ -5,6 +5,7 @@
 package Controller;
 
 import DAO_impl.AlumnoDAOI;
+import Model.Alumno;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,19 +46,14 @@ public class LoginServlet extends HttpServlet {
         //Verificacion de si ese usuario ya esta dentro de la bd y si esta redirijir de no ser asi lanzar un aviso de que esta mal
         AlumnoDAOI alumno_logeo = new AlumnoDAOI();
         String resultado = alumno_logeo.Verificacion_login(email, password);
-        /*
-        1.Primero va a validar si el usuario existe 
-        2.segundo va a verificar si el ususario existe tiene contraseña correcta 
-        pero el problema es que el primer metodo devuelve un boolean 
-        el segundo tiene que devolver otro boolean 
-        yluego se implementa otro metodo que devuelva al alumno como tal
-
-        */
+        
         //control de errores 
         switch (resultado) {
             case "LOGEOCORRECTO":
                 //tengo que ponerlo pendiente por que aun no obtengo al objeto alumno tengo que obtenerlo de la bd adecuada 
-                //HttpSession objsession = request.getSession(true);//por defecto viene true pero es indiferente si no hay sesion crea una
+                Alumno alumnoprimario = alumno_logeo.Busqueda_alumno(email);
+                HttpSession objsesion = request.getSession(true);//por defecto viene true pero es indiferente si no hay sesion crea una
+                objsesion.setAttribute("alumno_datos", alumnoprimario);
                 rd = request.getRequestDispatcher("/LandingPage.jsp");
                 rd.forward(request, response);
                 break;
