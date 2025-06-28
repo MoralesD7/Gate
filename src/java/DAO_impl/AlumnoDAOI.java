@@ -11,15 +11,14 @@ import java.util.logging.Logger;
 
 public class AlumnoDAOI implements AlumnoDAO {
 
-    static Connection cx = null;
-    static PreparedStatement ps;
-    static ResultSet rs;
-    static String consulta = null;
-    static String con_aux;
+    Connection cx = null;
+    PreparedStatement ps;
+    ResultSet rs;
+    String consulta = null;
+    String con_aux,con_aux_secundaria;
 
     public AlumnoDAOI() {
     }
-
     @Override
     public void Agregar_alumno(Alumno a) {
         cx = getConnection();
@@ -63,19 +62,13 @@ public class AlumnoDAOI implements AlumnoDAO {
         }
 
     }
-
     @Override
-    //no hay necesidad de hacer esto por que aun no hay modulo de administrador activo
     public void Mostrar_lista_alumnos() {
-        //no hay necesidad de hacer esto por que aun no hay modulo de administrador activo
     }
-
-    //no hay necesidad de hacer esto por que aun no hay modulo de administrador activo
     @Override
     public void Editar_alumno(String matricula) {
 
     }
-    //no hay necesidad de hacer esto por que aun no hay modulo de administrador activo
     @Override
     public void Eliminar_alumno(String matricula) {
 
@@ -106,13 +99,18 @@ public class AlumnoDAOI implements AlumnoDAO {
 
     @Override
     public String Verificacion_login(String email, String password) {
-        //seran 3 casos , NO encontrado , segundo , Encontrado pero contraseña erronea 
+        //seran 3 casos , NO encontrado , Encontrado pero contraseña erronea ,encontrado y verificado
         String cadena  = "";
         AlumnoDAOI alumnito = new AlumnoDAOI();
+        //declaro un boole para ver si se valido correctamente 
         boolean validado = false ;
+        //obtengo la conexion 
         cx = getConnection();
+        
+        //consultas 
         consulta = "SELECT M_alu_id FROM M_Alumno WHERE M_alu_email = ? ";
         con_aux ="SELECT E_tok_token FROM E_Token WHERE M_alu_id = ? ";
+        con_aux_secundaria = "SELECT * FROM M_Alumno WHERE M_alu_id = ?";
 
         try{
             //preparo la primer consulta para veri el correo
@@ -122,11 +120,10 @@ public class AlumnoDAOI implements AlumnoDAO {
             if(rs.next()){
                 //id que ayudara a saber el token 
                 String id = rs.getString(1);//obtiene el id de el usuario 
-                
+                //testeo para ver si funciona 
                 System.out.println("el id del usuario fue :"+id);
-                
-                ps = cx.prepareStatement(con_aux);//realiza la consulta 
-                ps.setString(1, id);//asgina el valor del id a la consulta 
+                ps = cx.prepareStatement(con_aux);//realiza la consulta del token
+                ps.setString(1, id);//asgina el valor del id a la consulta del token
                 System.out.println(ps);
                 rs = ps.executeQuery();//ejecuta la consulta 
                 if(rs.next()){            
@@ -134,7 +131,7 @@ public class AlumnoDAOI implements AlumnoDAO {
                         cadena ="LOGEOCORRECTO";
                         return cadena ;
                     }else{
-                         cadena ="PASSINCORRECTA";
+                         cadena ="PASSWORDINCORRECTA";
                     return cadena;
                     }
                 }
@@ -149,6 +146,35 @@ public class AlumnoDAOI implements AlumnoDAO {
         }
         return cadena;
     }
+      @Override
+    public Alumno Busqueda_alumno(String email) {
+        Alumno alumno = null;
+        consulta = "SELECT * FROM M_Alumno WHERE M_alu_email = ?";
+        cx = getConnection();
+        try {
+            ps = cx.prepareStatement(consulta);
+            System.out.println(ps);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                System.out.println("entro al if");
+                alumno = new Alumno();
+                alumno.setMatricula(rs.getString(2));
+                alumno.setNombre(rs.getString(3));
+                alumno.setApellido(rs.getString(4));
+                alumno.setEmail(rs.getString(5));
+                System.out.println(alumno.toString());
+                return alumno;
+            }else{
+                System.out.println("no se encontro ningun alumno");
+                return alumno;
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error en la consulta"+ ex);
+        }
+        return alumno;
+    }
+   
     
     /*
     ------MAIN PARA INSERCION DE ALUMNO-------------------
@@ -163,15 +189,17 @@ public class AlumnoDAOI implements AlumnoDAO {
         }
     }
     --------MAIN PARA LOGEO DE ALUMNO-------------------
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         AlumnoDAOI alumno = new AlumnoDAOI();
         String correo = "breakboy046@gmail.com";
         String contraseña ="Reading";
         String recuperacion = alumno.Verificacion_login(correo,contraseña);
         System.out.println(recuperacion);
-
     }
     */
-    
-
+    public static void main(String[] args) {
+        AlumnoDAOI obj = new AlumnoDAOI();
+        String correo = "falso@gmail.com";
+        obj.Busqueda_alumno(correo);
+    }
 }
