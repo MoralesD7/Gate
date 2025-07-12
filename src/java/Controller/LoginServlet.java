@@ -50,11 +50,12 @@ public class LoginServlet extends HttpServlet {
         //control de errores 
         switch (resultado) {
             case "LOGEOCORRECTO":
-                //tengo que ponerlo pendiente por que aun no obtengo al objeto alumno tengo que obtenerlo de la bd adecuada 
-                Alumno alumnoprimario = alumno_logeo.Busqueda_alumno(email);
+               
+                Alumno alumno_validado = alumno_logeo.Busqueda_alumno(email);
+                //aqui creo la sesion y asigno el obj usuario 
                 HttpSession objsesion = request.getSession(true);//por defecto viene true pero es indiferente si no hay sesion crea una
-                objsesion.setAttribute("alumno_datos", alumnoprimario);
-                rd = request.getRequestDispatcher("/LandingPage.jsp");
+                objsesion.setAttribute("alumno_validado", alumno_validado);
+                rd = request.getRequestDispatcher("/Landing.jsp");
                 rd.forward(request, response);
                 break;
             case "PASSWORDINCORRECTA":
@@ -66,7 +67,7 @@ public class LoginServlet extends HttpServlet {
                 break;
             case "NOENCONTRADO":
                 //rechazo por email ya dentro de la bd  
-                advertencia = "el email no ha sido registrado registrado";
+                advertencia = "el email no ha sido registrado";
                 request.setAttribute("email_erroneo", advertencia);
                 rd = request.getRequestDispatcher("/Login.jsp");
                 rd.forward(request, response);

@@ -1,0 +1,97 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 30 jun 2025, 1:24:47 a.m.
+    Author     : omaralejandromoralesdiaz
+*/
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #ffffff;
+    color: #222;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #d5f5f6;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-btn img {
+    width: 62px;
+    height: 62px;
+    cursor: pointer;
+}
+
+/* Contenedor central con barra aún más ancha */
+.menu-center {
+    display: flex;
+    background-color: #fce8b5;
+    border-radius: 12px;
+    padding: 15px 180px;
+    gap: 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor lateral derecho */
+.menu-side {
+    display: flex;
+    gap: 15px;
+}
+
+/* Todos los enlaces de iconos */
+.menu-center a,
+.menu-side a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+/* Efecto hover */
+.menu-center a:hover,
+.menu-side a:hover {
+    transform: scale(1.1);
+}
+
+/* Tamaño de íconos */
+.menu-center img,
+.menu-side img {
+    width: 48px;
+    height: 48px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-center {
+        padding: 8px 30px;
+        gap: 20px;
+    }
+    .menu-side {
+        gap: 10px;
+    }
+    .menu-center img,
+    .menu-side img {
+        width: 36px;
+        height: 36px;
+    }
+    .logo-btn img {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* Cuando un ícono o el logo está activo */
+.menu a.active,
+.logo-btn.active {
+    background-color: #fce8b5;
+    border-radius: 12px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+

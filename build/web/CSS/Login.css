@@ -103,4 +103,16 @@ input[type="password"] {
     width: 50px;
   }
 }
+.registro-link {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.registro-link a {
+    color: #333;
+    text-decoration: none;
+}
+
+
 

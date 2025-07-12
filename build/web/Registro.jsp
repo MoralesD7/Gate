@@ -4,7 +4,7 @@
     Author     : omaralejandromoralesdiaz
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -29,7 +29,7 @@
         <div class="right">
             <div class="form-box">
                 <div class="form-header">
-                    <h2>Bienvenido</h2>
+                    <h2>Registrate</h2>
                 </div>
                 <form action="RegistroServlet" method="post" id="Formulario">
                     <label for="matricula">Matrícula:</label>

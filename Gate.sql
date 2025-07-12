@@ -10,8 +10,12 @@ CREATE TABLE M_Alumno (
     M_alu_apellido VARCHAR(25) NOT NULL,
     M_alu_email VARCHAR(30) NOT NULL
 );
-SELECT * FROM M_Alumno WHERE M_alu_email='breakboy046@gmail.com';
+ALTER TABLE M_Alumno DROP INDEX M_alu_matricula;
+ALTER TABLE M_Alumno ADD UNIQUE (M_alu_email);
+DESCRIBE M_Alumno;
+SELECT * FROM M_Alumno WHERE M_alu_email='breakboy@gmail.com';
 SELECT * FROM M_Alumno;
+
 SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE M_Alumno;
 TRUNCATE TABLE E_Token;
@@ -25,8 +29,10 @@ CREATE TABLE E_Token (
     M_alu_id INT UNSIGNED UNIQUE,
     FOREIGN KEY (M_alu_id) REFERENCES M_Alumno(M_alu_id)
 );
-SELECT * FROM Token;
+SELECT * FROM E_Token;
 DROP TABLE Token;
+SELECT M_alu_id FROM M_Alumno WHERE M_alu_email='breakboy@gmail.com';
+SELECT E_tok_token FROM E_Token WHERE M_alu_id = '1';
 
 
 -- ============================
@@ -34,8 +40,7 @@ DROP TABLE Token;
 -- ============================
 CREATE TABLE E_Horario (
     E_hor_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    E_hor_hora_inicial TIME NOT NULL,
-    E_hor_hora_termino TIME NOT NULL,
+    E_hor_dia VARCHAR (10),
     M_alu_id INT UNSIGNED NOT NULL UNIQUE,
     FOREIGN KEY (M_alu_id) REFERENCES M_Alumno(M_alu_id)
 );
@@ -43,12 +48,6 @@ CREATE TABLE E_Horario (
 -- Tabla: E_Dia (relación N:1 con E_Horario) validado
 -- ============================
 
-CREATE TABLE E_Dia(
-	E_dia_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    E_dia_dia VARCHAR (10) ,
-    E_hor_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (E_hor_id) REFERENCES E_Horario(E_hor_id)
-);
 -- ============================
 -- Tabla: E_Materia (relación N:1 con E_Dia) validado
 -- ============================
@@ -58,9 +57,13 @@ CREATE TABLE E_Materia (
     E_mat_hora_inicio_materia TIME NOT NULL,
     E_mat_hora_final_materia TIME NOT NULL,
     E_mat_salon VARCHAR(25) NOT NULL,
-    E_dia_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (E_dia_id) REFERENCES E_Dia(E_dia_id)
+    E_hor_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (E_hor_id) REFERENCES E_Horario(E_hor_id)
 );
+DROP TABLE E_Materia ;
+DROP TABLE E_Dia;
+DROP TABLE E_Horario;
+SHOW TABLES ;
 -- ============================
 -- Tabla: E_Evento (relación N:1 con M_Alumno) validado
 -- ============================

@@ -1,0 +1,201 @@
+/* Importar fuente elegante para el título */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;
+    color: #222;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #d5f5f6;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Logo */
+.logo-btn img {
+    width: 62px;
+    height: 62px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.logo-btn img:hover {
+    transform: scale(1.05);
+}
+
+/* Contenedor central */
+.menu-center {
+    display: flex;
+    background-color: #fce8b5;
+    border-radius: 16px;
+    padding: 15px 180px;
+    gap: 70px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Contenedor lateral derecho */
+.menu-side {
+    display: flex;
+    gap: 15px;
+}
+
+/* Todos los enlaces de iconos */
+.menu-center a,
+.menu-side a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.menu-center a:hover,
+.menu-side a:hover {
+    transform: scale(1.1);
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Tamaño de íconos */
+.menu-center img,
+.menu-side img {
+    width: 48px;
+    height: 48px;
+}
+
+/* Icono activo */
+.menu a.active,
+.logo-btn.active {
+    background-color: #fce8b5;
+    border-radius: 12px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+/* Contenido principal */
+.contenido {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+/* Título con fuente diferente */
+.titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Descripción con Times New Roman */
+.descripcion {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3rem;
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* Botón principal */
+.boton {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #fce8b5;
+    border: 2px solid #000;
+    padding: 12px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.boton:hover {
+    background-color: #fddf9f;
+    transform: scale(1.05);
+}
+
+/* Botón de regresar específico */
+.form-regresar {
+    position: absolute;
+    top: 90px;
+    left: 20px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
+
+.form-regresar .btn {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #fce8b5;
+    color: #333;
+    border: 2px solid #fcd467;
+    padding: 8px 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-regresar .btn:hover {
+    background-color: #fcd467;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-center {
+        padding: 8px 30px;
+        gap: 20px;
+    }
+
+    .menu-side {
+        gap: 10px;
+    }
+
+    .menu-center img,
+    .menu-side img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .logo-btn img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .titulo {
+        font-size: 2.5rem;
+    }
+
+    .descripcion {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .form-regresar {
+        top: 80px;
+        left: 10px;
+    }
+
+    .form-regresar .btn {
+        font-size: 13px;
+        padding: 6px 16px;
+    }
+}

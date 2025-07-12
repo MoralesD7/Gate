@@ -1,0 +1,261 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #ffffff;
+    color: #222;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #d5f5f6;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-btn img {
+    width: 62px;
+    height: 62px;
+    cursor: pointer;
+}
+
+/* Menú central */
+.menu-center {
+    display: flex;
+    background-color: #fce8b5;
+    border-radius: 12px;
+    padding: 15px 180px;
+    gap: 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Menú lateral derecho */
+.menu-side {
+    display: flex;
+    gap: 15px;
+}
+
+/* Íconos */
+.menu-center a,
+.menu-side a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.menu-center a:hover,
+.menu-side a:hover {
+    transform: scale(1.1);
+}
+
+.menu-center img,
+.menu-side img {
+    width: 48px;
+    height: 48px;
+}
+
+/* Activo */
+.menu a.active,
+.logo-btn.active {
+    background-color: #fce8b5;
+    border-radius: 12px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+/* Formulario */
+form {
+    margin: 50px auto;
+    background-color: #d5f5f6;
+    border: 2px solid #b0e0e6;
+    border-radius: 20px;
+    padding: 40px 30px;
+    max-width: 900px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+form h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 30px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+select {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 16px;
+    background-color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+select:hover {
+    border-color: #999;
+}
+
+/* Botón */
+.btn {
+    background-color: #fce8b5;
+    color: #333;
+    border: 2px solid #fcd467;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #fcd467;
+    transform: scale(1.05);
+}
+
+.ocultar {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-center {
+        padding: 8px 30px;
+        gap: 20px;
+    }
+
+    .menu-side {
+        gap: 10px;
+    }
+
+    .menu-center img,
+    .menu-side img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .logo-btn img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    form {
+        padding: 30px 20px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Botón de regresar */
+.form-regresar {
+    position: absolute;
+    top: 60px; /* justo debajo del navbar */
+    left: 3px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
+
+.form-regresar .btn {
+    padding: 8px 18px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE: botón de regresar centrado en móviles */
+@media (max-width: 768px) {
+    .form-regresar {
+        position: static;
+        display: flex;
+        justify-content: center;
+        margin: 10px auto;
+    }
+    .form-regresar .btn {
+        width: 80%;
+        font-size: 16px;
+    }
+}
+
+
+/* Contenedor general de cada día */
+.day-container {
+    display: inline-block;
+    vertical-align: top;
+    width: 220px;
+    margin: 15px;
+}
+
+/* Título del día */
+.day-container h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+/* Caja de cada materia */
+.day-box {
+    background-color: #ccf7f2;
+    border: 1px solid #aaa;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Etiquetas dentro de cada materia */
+.day-box label {
+    display: block;
+    font-size: 13px;
+    margin-top: 5px;
+    text-align: left;
+    margin-left: 5px;
+}
+
+/* Inputs dentro de cada materia */
+.day-box input {
+    width: 90%;
+    padding: 4px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    margin-top: 2px;
+    font-family: 'Georgia', serif;
+}
+
+/* Botón final del formulario de materias */
+.form-materias .btn {
+    display: block;
+    margin: 30px auto 0 auto;
+}

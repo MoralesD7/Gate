@@ -4,51 +4,71 @@
  */
 package Model;
 
-import java.util.List;
+import java.util.Date;
 
-
+/**
+ *
+ * @author omaralejandromoralesdiaz
+ */
 public class Horario {
-    private String hora_inicio;
-    private String hora_termino;
-    private List<Dia> dia ;
-
+    String dia ; 
+    String nombre_materia ; 
+    Date hora_comienzo_materia;
+    Date hora_finalizacion_materia;
+    String salon ;
     public Horario(){}
-
-    public Horario(String hora_inicio, String hora_termino, List<Dia> dia) {
-        this.hora_inicio = hora_inicio;
-        this.hora_termino = hora_termino;
+    public Horario(String dia, String nombre_materia, Date hora_comienzo_materia, Date hora_finalizacion_materia, String salon) {
         this.dia = dia;
+        this.nombre_materia = nombre_materia;
+        this.hora_comienzo_materia = hora_comienzo_materia;
+        this.hora_finalizacion_materia = hora_finalizacion_materia;
+        this.salon = salon;
     }
 
-    public String getHora_inicio() {
-        return hora_inicio;
-    }
-
-    public void setHora_inicio(String hora_inicio) {
-        this.hora_inicio = hora_inicio;
-    }
-
-    public String getHora_termino() {
-        return hora_termino;
-    }
-
-    public void setHora_termino(String hora_termino) {
-        this.hora_termino = hora_termino;
-    }
-
-    public List<Dia> getDia() {
+    public String getDia() {
         return dia;
     }
 
-    public void setDia(List<Dia> dia) {
+    public void setDia(String dia) {
         this.dia = dia;
+    }
+
+    public String getNombre_materia() {
+        return nombre_materia;
+    }
+
+    public void setNombre_materia(String nombre_materia) {
+        this.nombre_materia = nombre_materia;
+    }
+
+    public Date getHora_comienzo_materia() {
+        return hora_comienzo_materia;
+    }
+
+    public void setHora_comienzo_materia(Date hora_comienzo_materia) {
+        this.hora_comienzo_materia = hora_comienzo_materia;
+    }
+
+    public Date getHora_finalizacion_materia() {
+        return hora_finalizacion_materia;
+    }
+
+    public void setHora_finalizacion_materia(Date hora_finalizacion_materia) {
+        this.hora_finalizacion_materia = hora_finalizacion_materia;
+    }
+
+    public String getSalon() {
+        return salon;
+    }
+
+    public void setSalon(String salon) {
+        this.salon = salon;
     }
 
     @Override
     public String toString() {
-        return "Horario{" + "hora_inicio=" + hora_inicio + ", hora_termino=" + hora_termino + ", dia=" + dia + '}';
+        return "Horario{" + "dia=" + dia + ", nombre_materia=" + nombre_materia + ", hora_comienzo_materia=" + hora_comienzo_materia + ", hora_finalizacion_materia=" + hora_finalizacion_materia + ", salon=" + salon + '}';
     }
-    
     
     
 }

@@ -4,7 +4,7 @@
     Author     : omaralejandromoralesdiaz
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -20,13 +20,12 @@
                     <img src="Images/logo.png" alt="Reloj de arena" class="icono">
                 </div>
                 <div class="right-side">
-                    <h2 class="login-title">Iniciar Sesión</h2>
+                    <h2 class="login-title">Bienvenido</h2>
                     <form action="LoginServlet" method="post">
                         <label for="email">Correo electrónico:</label>
                         <input type="email" id="email" name="email" required>
                         <div name="advertencia">
                             <%
-                                //validacion de email usado
                                 if (request.getAttribute("email_erroneo") != null) {
                                     out.print(request.getAttribute("email_erroneo"));
                                 }
@@ -36,7 +35,6 @@
                         <input type="password" id="password" name="password" required>
                         <div name="advertencia">
                             <%
-                                //validacion de email usado
                                 if (request.getAttribute("password_erronea") != null) {
                                     out.print(request.getAttribute("password_erronea"));
                                 }
@@ -44,6 +42,11 @@
                         </div>
                         <input class="btn" type="submit" value="Iniciar Sesión">
                     </form>
+
+                    <!-- Enlace al ServletRegistro -->
+                    <div class="registro-link" style="margin-top: 15px; text-align: center; font-size: 14px;">
+                        ¿No tienes cuenta? <a href="Registro.jsp">Regístrate aquí</a>
+                    </div>
                 </div>
             </div>
         </div>
