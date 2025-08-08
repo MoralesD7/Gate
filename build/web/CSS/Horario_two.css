@@ -1,0 +1,222 @@
+/* === ESTILOS PARA materiasCantidad.jsp === */
+
+/* === RESET GENERAL === */
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #ffffff;
+    color: #222;
+}
+
+/* === NAVBAR === */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #d5f5f6;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.logo-btn img {
+    width: 62px;
+    height: 62px;
+    cursor: pointer;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-center {
+    display: flex;
+    background-color: #fce8b5;
+    border-radius: 12px;
+    padding: 15px 180px;
+    gap: 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-side {
+    display: flex;
+    gap: 15px;
+}
+
+.menu-center a,
+.menu-side a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.menu-center a:hover,
+.menu-side a:hover {
+    transform: scale(1.1);
+}
+
+.menu-center img,
+.menu-side img {
+    width: 48px;
+    height: 48px;
+}
+
+.menu a.active,
+.logo-btn.active {
+    background-color: #fce8b5;
+    border-radius: 12px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+/* === FORMULARIO PRINCIPAL === */
+form {
+    margin: 50px auto;
+    background-color: #d5f5f6;
+    border: 2px solid #b0e0e6;
+    border-radius: 20px;
+    padding: 40px 30px;
+    max-width: 1200px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* === OBSERVACIÓN (opcional si la tienes) === */
+.observacion {
+    text-align: center;
+    color: #7c1515;
+    font-weight: bold;
+    margin: 15px 0;
+    font-size: 15px;
+}
+
+/* === CONTENEDOR DE DÍAS EN FILA === */
+.days-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* === CAJA DE CADA DÍA === */
+.day-container {
+    display: inline-block;
+    width: 200px;
+    min-height: 280px;
+    background-color: #ccf7f2;
+    border: 1px solid #aaa;
+    border-radius: 20px;
+    padding: 15px 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    vertical-align: top;
+}
+
+/* === TÍTULO DE CADA DÍA === */
+.day-container h3 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* === CADA RECUADRO DE MATERIA DENTRO DEL DÍA === */
+.day-box {
+    background-color: #ffffff;
+    border: 1px solid #aaa;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 15px; /* separación entre recuadros */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* === LABELS E INPUTS DE CADA RECUADRO === */
+.day-box label {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: left;
+    margin-left: 5px;
+}
+
+.day-box input {
+    width: 90%;
+    padding: 6px;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    margin-top: 4px;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+}
+
+/* === BOTÓN GUARDAR === */
+.btn {
+    display: block;
+    margin: 30px auto 0;
+    padding: 10px 25px;
+    background-color: #fce8b5;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #fddc8f;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .days-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .day-container {
+        width: 90%;
+    }
+}
+/* === BOTÓN REGRESAR === */
+.regresar {
+    margin: 30px 0 20px 20px;
+}
+
+.regresar a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #fce8b5;
+    padding: 10px 25px;
+    border-radius: 12px;
+    font-weight: bold;
+    color: #222;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.regresar a:hover {
+    background-color: #fddc8f;
+    transform: scale(1.05);
+}
+
+/* === RESPONSIVE PARA BOTÓN REGRESAR === */
+@media (max-width: 768px) {
+    .regresar {
+        text-align: center;
+        margin: 20px auto;
+    }
+    .regresar a {
+        width: 90%;
+        text-align: center;
+    }
+}
+#horarioForm div[id$="_js"] {
+    font-size: 0.9em;
+    margin-top: 4px;
+    color: red;
+}

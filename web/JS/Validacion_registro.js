@@ -36,7 +36,7 @@ let valor_apellido =  validar_apellido =()=> {
         b_apellido = true ;
         return b_apellido;
     } else {
-        apellido_js.innerHTML = "Tus apellidos deben de iniciar en mayuscula y contener minimo 2 letras";
+        apellido_js.innerHTML = "Los apellidos deben de iniciar en mayuscula y contener minimo 2 letras";
         b_apellido = false ;
         return b_apellido;
     }

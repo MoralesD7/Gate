@@ -1,4 +1,5 @@
-/* Estilos generales */
+/* === ESTILOS PARA materiasCantidad.jsp === */
+
 body {
     margin: 0;
     font-family: 'Georgia', serif;
@@ -22,7 +23,12 @@ body {
     cursor: pointer;
 }
 
-/* Menú central */
+.menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .menu-center {
     display: flex;
     background-color: #fce8b5;
@@ -33,13 +39,11 @@ body {
     align-items: center;
 }
 
-/* Menú lateral derecho */
 .menu-side {
     display: flex;
     gap: 15px;
 }
 
-/* Íconos */
 .menu-center a,
 .menu-side a {
     display: flex;
@@ -59,7 +63,6 @@ body {
     height: 48px;
 }
 
-/* Activo */
 .menu a.active,
 .logo-btn.active {
     background-color: #fce8b5;
@@ -67,7 +70,7 @@ body {
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
-/* Formulario */
+/* Formulario principal */
 form {
     margin: 50px auto;
     background-color: #d5f5f6;
@@ -80,182 +83,54 @@ form {
 }
 
 form h2 {
-    font-size: 20px;
-    font-weight: normal;
-    margin-bottom: 30px;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .form-row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    margin-bottom: 30px;
+    justify-content: space-around;
+    gap: 20px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 150px;
 }
 
-.form-group label {
+label {
+    margin-bottom: 5px;
     font-weight: bold;
-    margin-bottom: 8px;
-    font-size: 16px;
 }
 
 select {
-    padding: 8px 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 12px;
-    font-size: 16px;
-    background-color: #ffffff;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
 }
 
-select:hover {
-    border-color: #999;
-}
-
-/* Botón */
 .btn {
-    background-color: #fce8b5;
-    color: #333;
-    border: 2px solid #fcd467;
+    margin-top: 30px;
     padding: 10px 25px;
-    border-radius: 20px;
+    background-color: #fce8b5;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
     font-size: 16px;
     cursor: pointer;
-    font-family: 'Georgia', serif;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #fcd467;
-    transform: scale(1.05);
+    background-color: #fddc8f;
 }
 
-.ocultar {
-    display: none;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .menu-center {
-        padding: 8px 30px;
-        gap: 20px;
-    }
-
-    .menu-side {
-        gap: 10px;
-    }
-
-    .menu-center img,
-    .menu-side img {
-        width: 36px;
-        height: 36px;
-    }
-
-    .logo-btn img {
-        width: 48px;
-        height: 48px;
-    }
-
-    .form-row {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    form {
-        padding: 30px 20px;
-    }
-
-    .btn {
-        width: 100%;
-    }
-}
-
-/* Botón de regresar */
-.form-regresar {
-    position: absolute;
-    top: 60px; /* justo debajo del navbar */
-    left: 3px;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    box-shadow: none;
-}
-
-.form-regresar .btn {
-    padding: 8px 18px;
-    font-size: 14px;
-}
-
-/* RESPONSIVE: botón de regresar centrado en móviles */
-@media (max-width: 768px) {
-    .form-regresar {
-        position: static;
-        display: flex;
-        justify-content: center;
-        margin: 10px auto;
-    }
-    .form-regresar .btn {
-        width: 80%;
-        font-size: 16px;
-    }
-}
-
-
-/* Contenedor general de cada día */
-.day-container {
-    display: inline-block;
-    vertical-align: top;
-    width: 220px;
-    margin: 15px;
-}
-
-/* Título del día */
-.day-container h3 {
-    text-align: center;
-    margin-bottom: 10px;
-    font-weight: normal;
-    font-size: 16px;
-}
-
-/* Caja de cada materia */
-.day-box {
-    background-color: #ccf7f2;
-    border: 1px solid #aaa;
-    border-radius: 20px;
-    padding: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-/* Etiquetas dentro de cada materia */
-.day-box label {
-    display: block;
-    font-size: 13px;
-    margin-top: 5px;
-    text-align: left;
-    margin-left: 5px;
-}
-
-/* Inputs dentro de cada materia */
-.day-box input {
-    width: 90%;
-    padding: 4px;
-    border: 1px solid #aaa;
-    border-radius: 10px;
-    margin-top: 2px;
-    font-family: 'Georgia', serif;
-}
-
-/* Botón final del formulario de materias */
-.form-materias .btn {
-    display: block;
-    margin: 30px auto 0 auto;
+div[name="advertencia"] {
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
 }

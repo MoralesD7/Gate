@@ -55,6 +55,7 @@ public class LoginServlet extends HttpServlet {
                 //aqui creo la sesion y asigno el obj usuario 
                 HttpSession objsesion = request.getSession(true);//por defecto viene true pero es indiferente si no hay sesion crea una
                 objsesion.setAttribute("alumno_validado", alumno_validado);
+                objsesion.setAttribute("email", email);
                 rd = request.getRequestDispatcher("/Landing.jsp");
                 rd.forward(request, response);
                 break;

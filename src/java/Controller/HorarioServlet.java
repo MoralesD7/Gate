@@ -18,13 +18,11 @@ import javax.servlet.http.HttpSession;
  */
 public class HorarioServlet extends HttpServlet {
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
     }
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,54 +34,43 @@ public class HorarioServlet extends HttpServlet {
             throws ServletException, IOException {
         //objeto para la redireccion
         RequestDispatcher rd;
-        String regreso ;
-        regreso = request.getParameter("regresar");
-        System.out.println("valor de regreso"+regreso);
-        if(regreso!=null){
-            boolean horario_generador = false;
-            System.out.println("entro al if del regreso");
-            request.setAttribute("horario_generador", horario_generador);
-            rd = request.getRequestDispatcher("/Horario.jsp");
-            rd.forward(request, response);
-        }
-        
-        //obtengo los valores de las materias deseadas 
-        int v_lunes, v_martes, v_miercoles, v_jueves, v_viernes;
-        
-        try{
-        v_lunes = Integer.parseInt(request.getParameter("lunes"));
-        v_martes = Integer.parseInt(request.getParameter("martes"));
-        v_miercoles = Integer.parseInt(request.getParameter("miercoles"));
-        v_jueves = Integer.parseInt(request.getParameter("jueves"));
-        v_viernes = Integer.parseInt(request.getParameter("viernes"));
-        
-        if (v_lunes > 0 || v_martes > 0 || v_miercoles > 0 || v_jueves > 0 || v_viernes > 0) {
-            System.out.println("entro al if y no hay problema se va a mandar el valor correcto al if de el jsp");
-            boolean horario_generador = true;
-            request.setAttribute("materias_lunes", v_lunes);
-            request.setAttribute("materias_martes", v_martes);
-            request.setAttribute("materias_miercoles", v_miercoles);
-            request.setAttribute("materias_jueves", v_jueves);
-            request.setAttribute("materias_viernes", v_viernes);
-            request.setAttribute("horario_generador", horario_generador);
-            HttpSession objsesion = request.getSession();
-            objsesion.setAttribute("materias_lunes", v_lunes);
-            objsesion.setAttribute("materias_martes", v_martes);
-            objsesion.setAttribute("materias_miercoles", v_miercoles);
-            objsesion.setAttribute("materias_jueves", v_jueves);
-            objsesion.setAttribute("materias_viernes", v_viernes);
+       
+        //obtengo el numero de materias y parseo 
+        int v_lunes = 0, v_martes = 0, v_miercoles = 0, v_jueves = 0, v_viernes = 0;
+        boolean act_parseo = false;
+        try {
+            //si se obtienen lo valores se activa el parseo si no exception numberformat
+            if (request.getParameter("lunes") != null && request.getParameter("martes") != null & request.getParameter("miercoles") != null && request.getParameter("jueves") != null && request.getParameter("viernes") != null) {
+                v_lunes = Integer.parseInt(request.getParameter("lunes"));
+                v_martes = Integer.parseInt(request.getParameter("martes"));
+                v_miercoles = Integer.parseInt(request.getParameter("miercoles"));
+                v_jueves = Integer.parseInt(request.getParameter("jueves"));
+                v_viernes = Integer.parseInt(request.getParameter("viernes"));
+                act_parseo = true ;
+            }
+            //establecer valores de la siguiente parte del jsp y guardar los valores de la sesion
+            if (v_lunes > 0 || v_martes > 0 || v_miercoles > 0 || v_jueves > 0 || v_viernes > 0 && act_parseo) {
+                System.out.println("insercion de cantidad de materias  en objsesion exitosa ");
+                HttpSession objsesion = request.getSession();
+                objsesion.setAttribute("materias_lunes", v_lunes);
+                objsesion.setAttribute("materias_martes", v_martes);
+                objsesion.setAttribute("materias_miercoles", v_miercoles);
+                objsesion.setAttribute("materias_jueves", v_jueves);
+                objsesion.setAttribute("materias_viernes", v_viernes);
+                rd = request.getRequestDispatcher("/Horario_two.jsp");
+                rd.forward(request, response);
+            } else if (v_lunes == 0 && v_martes == 0 && v_miercoles == 0 && v_jueves == 0 && v_viernes == 0) {
+                System.out.println("if para valores == 0");
+                String advertencia = "Se necesita almenos una materia en un dia para generar el horario";
+                request.setAttribute("advertencia", advertencia);
+                rd = request.getRequestDispatcher("/Horario.jsp");
+                rd.forward(request, response);
 
-        } else if(v_lunes == 0 && v_martes == 0 && v_miercoles == 0 && v_jueves == 0 && v_viernes == 0) {
-            System.out.println("no se registran los valores de manera correcta ");
-            String advertencia ="no se puede generar un horario si no hay alguna ninguna materia en ningun dia de la semana";
-            request.setAttribute("advertencia", advertencia);
-            
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("error:" + e);
         }
-        }catch(NumberFormatException e){
-            System.err.println("error:"+e);
-        }
-        rd = request.getRequestDispatcher("/Horario.jsp");
-        rd.forward(request, response);
+       
     }
 
     @Override
