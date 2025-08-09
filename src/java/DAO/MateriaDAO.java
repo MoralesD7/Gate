@@ -12,7 +12,7 @@ import java.time.LocalTime;
  * @author omaralejandromoralesdiaz
  */
 public interface MateriaDAO {
+        public LocalTime obtener_hora(String hora);//metodo para parsear la hora de manera correcta 
         public boolean validar_hora_d_materia(Materia m);//algun dia lo hare pero hoy no : v,fue dos dias despues XD
-        
 
 }

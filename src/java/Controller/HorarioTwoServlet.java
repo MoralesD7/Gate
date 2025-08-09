@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 
 /**
@@ -44,22 +43,19 @@ public class HorarioTwoServlet extends HttpServlet {
         String email = (String) objsesion.getAttribute("email");
 
         //obj para llamar al metodo de insercion
-        DiaDAOI manipulacion_lunes = new DiaDAOI();
-        MateriaDAOI validador = new MateriaDAOI();
+        DiaDAOI dia = new DiaDAOI();
+        MateriaDAOI obj_materia = new MateriaDAOI();
         Inconsistencia_hora incons ;
-        RequestDispatcher rd = null;
+        RequestDispatcher rd ;
         
         //objetos para mandarlo como parametro 
         LocalTime obj_t_inicial, obj_t_final;
 
-        //string para obtener el parametro
+        //string para obtener los parametros
         String nom_materia, hor_inicial, hor_final, salon;
 
         //variables para manejo de la division
-        int hora_inicio = 0, minutos_inicio = 0, hora_final = 0, minutos_final = 0,activador_traslapes = 0;
-
-        //arreglo reciclable 
-        String[] tiempo_division;
+        int activador_traslapes = 0;
 
         //obtener los cantidad de materias de un dia 
         int materias_lunes = (Integer) objsesion.getAttribute("materias_lunes");
@@ -68,8 +64,7 @@ public class HorarioTwoServlet extends HttpServlet {
         int materias_jueves = (Integer) objsesion.getAttribute("materias_jueves");
         int materias_viernes = (Integer) objsesion.getAttribute("materias_viernes");
 
-        //if para lunes 
-        ArrayList<Materia> lista_materias_lunes = new ArrayList<>();
+        ArrayList<Materia> listado_traslapes = new ArrayList<>();
         ArrayList<Inconsistencia_hora> inconsistencias = new ArrayList<>();
         ArrayList<Materia> listado_preeliminar = new ArrayList<>();
         
@@ -84,21 +79,11 @@ public class HorarioTwoServlet extends HttpServlet {
 
                 //obtener hora inicial
                 hor_inicial = request.getParameter("hor_inicio_lunes_" + i);
-                //Primero tengo que obtener el dato en string y guardarlo en un arreglo correspondiente 
-                tiempo_division = hor_inicial.split(":");
-                //asginacion de el parseo 
-                hora_inicio = Integer.parseInt(tiempo_division[0]);
-                minutos_inicio = Integer.parseInt(tiempo_division[1]);
-                obj_t_inicial = LocalTime.of(hora_inicio, minutos_inicio);
-
+                obj_t_inicial = obj_materia.obtener_hora(hor_inicial);
+                
                 //obtener hora final
                 hor_final = request.getParameter("hor_final_lunes_" + i);
-                //Primero tengo que obtener el dato en string y guardarlo en un arreglo correspondiente 
-                tiempo_division = hor_final.split(":");
-                //asginacion de el parseo 
-                hora_final = Integer.parseInt(tiempo_division[0]);
-                minutos_final = Integer.parseInt(tiempo_division[1]);
-                obj_t_final = LocalTime.of(hora_final, minutos_final);
+                obj_t_final = obj_materia.obtener_hora(hor_final);
 
                 System.out.println("hora inicial" + obj_t_inicial + "\n" + "hora final" + obj_t_final);
 
@@ -106,27 +91,32 @@ public class HorarioTwoServlet extends HttpServlet {
                 System.out.println("el salon correspondiente a la materia es :" + salon);
 
                 Materia materia = new Materia(nom_materia, obj_t_inicial, obj_t_final, salon);
-                boolean inconsistencia = validador.validar_hora_d_materia(materia);
+                boolean inconsistencia = obj_materia.validar_hora_d_materia(materia);
                 
                 //validacion para que no inserte materias con hor_i y hor_f de manera inconsistente
                 if (inconsistencia) {
                      listado_preeliminar.add(materia);
                 }else{
-                    //NMMS QUE MANEJO DE POO SE QUE ES BASICO PERO ES INCREIBLE FUCK 
                     incons = new Inconsistencia_hora(i,materia.getNombre_materia());
                     inconsistencias.add(incons);
                     request.setAttribute("traslapadas", inconsistencias);
                     activador_traslapes++;
                 }
             }
+            //Validacion listado_preeliminar para una lista de materias con traslapes 
             if(activador_traslapes == 0){
-            
+                listado_traslapes = dia.validacion_lista_materias(listado_preeliminar);
+            }
+            if(listado_traslapes == null){
+                //caso insercion de materias 
+            }else{
+                //caso para mostrar traslapes 
+                
             }
             
             
-            for(Inconsistencia_hora m: inconsistencias){
-                System.out.println("listado desde el servlet:"+m);
-            }
+            
+           
             rd = request.getRequestDispatcher("/Horario_two.jsp");
             rd.forward(request, response);
         }
