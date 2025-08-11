@@ -80,8 +80,8 @@
                 <div name="advertencia">
 
                     <%
-                        if (request.getAttribute("traslapadas") != null) {
-                            ArrayList<Inconsistencia_hora> inconsistencias = (ArrayList<Inconsistencia_hora>) request.getAttribute("traslapadas");
+                        if (request.getAttribute("traslapadas_lunes") != null) {
+                            ArrayList<Inconsistencia_hora> inconsistencias = (ArrayList<Inconsistencia_hora>) request.getAttribute("traslapadas_lunes");
                             for (int j = 0; j < inconsistencias.size(); j++) {
                                 Inconsistencia_hora obj_incons = inconsistencias.get(j);
                                 if (obj_incons.getIterador_inconsistencia() == i) {
@@ -92,10 +92,10 @@
                         }
                     %>
                     <%
-                        if (request.getAttribute("lista_materias_traslapadas") != null && i == cantidad_lunes-1 ) {
-                            ArrayList<Materia> traslapes = (ArrayList<Materia>) request.getAttribute("lista_materias_traslapadas");
+                        if (request.getAttribute("lista_materias_traslapadas_lunes") != null && i == cantidad_lunes-1 ) {
+                            ArrayList<Materia> traslapes = (ArrayList<Materia>) request.getAttribute("lista_materias_traslapadas_lunes");
                             if(!traslapes.isEmpty()){
-                            out.print("La lista de materias que traslapan sus materias son: ");
+                            out.print("La lista de materias que traslapan son: ");
                             for (int k = 0; k < traslapes.size(); k++) {
                                 Materia mat = traslapes.get(k);
                                 out.print(mat.getNombre_materia()+" : "+"\n"+ 
@@ -125,6 +125,35 @@
                     <label>Salón:</label>
                     <input type="text" name="salon_martes_<%=i%>">
                 </div>
+                <div name="advertencia">
+
+                    <%
+                        if (request.getAttribute("traslapadas_martes") != null) {//<---------cambio
+                            ArrayList<Inconsistencia_hora> inconsistencias = (ArrayList<Inconsistencia_hora>) request.getAttribute("traslapadas_martes");//<---------cambio
+                            for (int j = 0; j < inconsistencias.size(); j++) {
+                                Inconsistencia_hora obj_incons = inconsistencias.get(j);
+                                if (obj_incons.getIterador_inconsistencia() == i) {
+                                    out.print("Hay un error en " + obj_incons.getNombre_mat() + " estas insertando un intervalo invalido");
+                                }
+                            }
+
+                        }
+                    %>
+                    <%
+                        if (request.getAttribute("lista_materias_traslapadas_martes") != null && i == cantidad_martes-1 ) {//<---------cambio 2
+                            ArrayList<Materia> traslapes = (ArrayList<Materia>) request.getAttribute("lista_materias_traslapadas_martes");//<---------cambio
+                            if(!traslapes.isEmpty()){
+                            out.print("La lista de materias que traslapan son: ");
+                            for (int k = 0; k < traslapes.size(); k++) {
+                                Materia mat = traslapes.get(k);
+                                out.print(mat.getNombre_materia()+" : "+"\n"+ 
+                                mat.getHor_inicial()+" - "+mat.getHor_final()+"\n");
+                            }
+                            }
+                        }
+
+                    %>
+                </div>
                 <% } %>
             </div>
 
@@ -143,6 +172,35 @@
 
                     <label>Salón:</label>
                     <input type="text" name="salon_miercoles_<%=i%>">
+                </div>
+                <div name="advertencia">
+
+                    <%
+                        if (request.getAttribute("traslapadas_miercoles") != null) {//<---------cambio
+                            ArrayList<Inconsistencia_hora> inconsistencias = (ArrayList<Inconsistencia_hora>) request.getAttribute("traslapadas_miercoles");//<---------cambio
+                            for (int j = 0; j < inconsistencias.size(); j++) {
+                                Inconsistencia_hora obj_incons = inconsistencias.get(j);
+                                if (obj_incons.getIterador_inconsistencia() == i) {
+                                    out.print("Hay un error en " + obj_incons.getNombre_mat() + " estas insertando un intervalo invalido");
+                                }
+                            }
+
+                        }
+                    %>
+                    <%
+                        if (request.getAttribute("lista_materias_traslapadas_miercoles") != null && i == cantidad_miercoles-1 ) {//<---------cambio 2
+                            ArrayList<Materia> traslapes = (ArrayList<Materia>) request.getAttribute("lista_materias_traslapadas_miercoles");//<---------cambio
+                            if(!traslapes.isEmpty()){
+                            out.print("La lista de materias que traslapan son: ");
+                            for (int k = 0; k < traslapes.size(); k++) {
+                                Materia mat = traslapes.get(k);
+                                out.print(mat.getNombre_materia()+" : "+"\n"+ 
+                                mat.getHor_inicial()+" - "+mat.getHor_final()+"\n");
+                            }
+                            }
+                        }
+
+                    %>
                 </div>
                 <% } %>
             </div>
@@ -163,6 +221,35 @@
                     <label>Salón:</label>
                     <input type="text" name="salon_jueves_<%=i%>">
                 </div>
+                <div name="advertencia">
+
+                    <%
+                        if (request.getAttribute("traslapadas_jueves") != null) {//<---------cambio
+                            ArrayList<Inconsistencia_hora> inconsistencias = (ArrayList<Inconsistencia_hora>) request.getAttribute("traslapadas_jueves");//<---------cambio
+                            for (int j = 0; j < inconsistencias.size(); j++) {
+                                Inconsistencia_hora obj_incons = inconsistencias.get(j);
+                                if (obj_incons.getIterador_inconsistencia() == i) {
+                                    out.print("Hay un error en " + obj_incons.getNombre_mat() + " estas insertando un intervalo invalido");
+                                }
+                            }
+
+                        }
+                    %>
+                    <%
+                        if (request.getAttribute("lista_materias_traslapadas_jueves") != null && i == cantidad_jueves-1 ) {//<---------cambio 2
+                            ArrayList<Materia> traslapes = (ArrayList<Materia>) request.getAttribute("lista_materias_traslapadas_jueves");//<---------cambio
+                            if(!traslapes.isEmpty()){
+                            out.print("La lista de materias que traslapan son: ");
+                            for (int k = 0; k < traslapes.size(); k++) {
+                                Materia mat = traslapes.get(k);
+                                out.print(mat.getNombre_materia()+" : "+"\n"+ 
+                                mat.getHor_inicial()+" - "+mat.getHor_final()+"\n");
+                            }
+                            }
+                        }
+
+                    %>
+                </div>
                 <% } %>
             </div>
 
@@ -181,6 +268,35 @@
 
                     <label>Salón:</label>
                     <input type="text" name="salon_viernes_<%=i%>">
+                </div>
+                 <div name="advertencia">
+
+                    <%
+                        if (request.getAttribute("traslapadas_viernes") != null) {//<---------cambio
+                            ArrayList<Inconsistencia_hora> inconsistencias = (ArrayList<Inconsistencia_hora>) request.getAttribute("traslapadas_viernes");//<---------cambio
+                            for (int j = 0; j < inconsistencias.size(); j++) {
+                                Inconsistencia_hora obj_incons = inconsistencias.get(j);
+                                if (obj_incons.getIterador_inconsistencia() == i) {
+                                    out.print("Hay un error en " + obj_incons.getNombre_mat() + " estas insertando un intervalo invalido");
+                                }
+                            }
+
+                        }
+                    %>
+                    <%
+                        if (request.getAttribute("lista_materias_traslapadas_viernes") != null && i == cantidad_viernes-1 ) {//<---------cambio 2
+                            ArrayList<Materia> traslapes = (ArrayList<Materia>) request.getAttribute("lista_materias_traslapadas_viernes");//<---------cambio
+                            if(!traslapes.isEmpty()){
+                            out.print("La lista de materias que traslapan son: ");
+                            for (int k = 0; k < traslapes.size(); k++) {
+                                Materia mat = traslapes.get(k);
+                                out.print(mat.getNombre_materia()+" : "+"\n"+ 
+                                mat.getHor_inicial()+" - "+mat.getHor_final()+"\n");
+                            }
+                            }
+                        }
+
+                    %>
                 </div>
                 <% }%>
             </div>
