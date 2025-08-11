@@ -42,13 +42,13 @@ public class HorarioTwoServlet extends HttpServlet {
         //obtener al usuario 
         String email = (String) objsesion.getAttribute("email");
 
-        //obj para llamar al metodo de insercion
+        //objetos para manipular los met DAO
         DiaDAOI dia = new DiaDAOI();
         MateriaDAOI obj_materia = new MateriaDAOI();
-        Inconsistencia_hora incons ;
-        RequestDispatcher rd ;
-        
-        //objetos para mandarlo como parametro 
+        Inconsistencia_hora incons;
+        RequestDispatcher rd;
+
+        //objetos de tiempo 
         LocalTime obj_t_inicial, obj_t_final;
 
         //string para obtener los parametros
@@ -56,6 +56,7 @@ public class HorarioTwoServlet extends HttpServlet {
 
         //variables para manejo de la division
         int activador_traslapes = 0;
+        boolean act_traslapes = false;
 
         //obtener los cantidad de materias de un dia 
         int materias_lunes = (Integer) objsesion.getAttribute("materias_lunes");
@@ -67,7 +68,6 @@ public class HorarioTwoServlet extends HttpServlet {
         ArrayList<Materia> listado_traslapes = new ArrayList<>();
         ArrayList<Inconsistencia_hora> inconsistencias = new ArrayList<>();
         ArrayList<Materia> listado_preeliminar = new ArrayList<>();
-        
 
         if (materias_lunes > 0) {
             System.out.println("Materias lunes :");
@@ -80,7 +80,7 @@ public class HorarioTwoServlet extends HttpServlet {
                 //obtener hora inicial
                 hor_inicial = request.getParameter("hor_inicio_lunes_" + i);
                 obj_t_inicial = obj_materia.obtener_hora(hor_inicial);
-                
+
                 //obtener hora final
                 hor_final = request.getParameter("hor_final_lunes_" + i);
                 obj_t_final = obj_materia.obtener_hora(hor_final);
@@ -92,31 +92,32 @@ public class HorarioTwoServlet extends HttpServlet {
 
                 Materia materia = new Materia(nom_materia, obj_t_inicial, obj_t_final, salon);
                 boolean inconsistencia = obj_materia.validar_hora_d_materia(materia);
-                
+
                 //validacion para que no inserte materias con hor_i y hor_f de manera inconsistente
                 if (inconsistencia) {
-                     listado_preeliminar.add(materia);
-                }else{
-                    incons = new Inconsistencia_hora(i,materia.getNombre_materia());
+                    listado_preeliminar.add(materia);
+                } else {
+                    incons = new Inconsistencia_hora(i, materia.getNombre_materia());
                     inconsistencias.add(incons);
                     request.setAttribute("traslapadas", inconsistencias);
-                    activador_traslapes++;
+                    act_traslapes = true;
                 }
             }
             //Validacion listado_preeliminar para una lista de materias con traslapes 
-            if(activador_traslapes == 0){
+            if (!act_traslapes) {
                 listado_traslapes = dia.validacion_lista_materias(listado_preeliminar);
             }
-            if(listado_traslapes == null){
-                //caso insercion de materias 
-            }else{
-                //caso para mostrar traslapes 
-                
+
+            if (listado_traslapes != null && !listado_traslapes.isEmpty()) {
+                System.out.println("por alguna razon entra y no hay traslapes");
+                request.setAttribute("lista_materias_traslapadas", listado_traslapes);
+                for (int k = 0; k < listado_traslapes.size(); k++) {
+                    Materia mat = listado_traslapes.get(k);
+                    System.out.println("La lista de materias que traslapan sus materias son : " + mat.getNombre_materia() + " : "
+                            + mat.getHor_inicial() + " - " + mat.getHor_final());
+                }
             }
-            
-            
-            
-           
+            //redireccion a jsp
             rd = request.getRequestDispatcher("/Horario_two.jsp");
             rd.forward(request, response);
         }

@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -27,7 +27,7 @@ public class DiaDAOI implements DiaDAO {
     @Override
     public ArrayList<Materia> validacion_lista_materias(ArrayList materias) {
         ArrayList<Materia> materias_traslapadas = new ArrayList<>();
-        for (int i = 0 ; i<materias.size()-1;i++){
+        for (int i = 0 ; i<materias.size();i++){
             Materia materia_actual = (Materia) materias.get(i);
             for (int j = 0 ; j<materias.size();j++){
                 Materia materia_siguiente = (Materia) materias.get(j);

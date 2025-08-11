@@ -78,17 +78,30 @@
                     <input type="text" name="salon_lunes_<%=i%>">
                 </div>
                 <div name="advertencia">
-                        
-                    <%  
-                        if (request.getAttribute("traslapadas") != null  ) {
-                            ArrayList<Inconsistencia_hora> inconsistencias = (ArrayList<Inconsistencia_hora>)request.getAttribute("traslapadas");
+
+                    <%
+                        if (request.getAttribute("traslapadas") != null) {
+                            ArrayList<Inconsistencia_hora> inconsistencias = (ArrayList<Inconsistencia_hora>) request.getAttribute("traslapadas");
                             for (int j = 0; j < inconsistencias.size(); j++) {
                                 Inconsistencia_hora obj_incons = inconsistencias.get(j);
                                 if (obj_incons.getIterador_inconsistencia() == i) {
-                                    out.print("Hay un error en " + obj_incons.getNombre_mat()+"estas insertando un intervalo invalido");
+                                    out.print("Hay un error en " + obj_incons.getNombre_mat() + " estas insertando un intervalo invalido");
                                 }
                             }
 
+                        }
+                    %>
+                    <%
+                        if (request.getAttribute("lista_materias_traslapadas") != null && i == cantidad_lunes-1 ) {
+                            ArrayList<Materia> traslapes = (ArrayList<Materia>) request.getAttribute("lista_materias_traslapadas");
+                            if(!traslapes.isEmpty()){
+                            out.print("La lista de materias que traslapan sus materias son: ");
+                            for (int k = 0; k < traslapes.size(); k++) {
+                                Materia mat = traslapes.get(k);
+                                out.print(mat.getNombre_materia()+" : "+"\n"+ 
+                                mat.getHor_inicial()+" - "+mat.getHor_final()+"\n");
+                            }
+                            }
                         }
 
                     %>
