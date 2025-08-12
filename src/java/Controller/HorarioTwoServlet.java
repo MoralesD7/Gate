@@ -55,9 +55,9 @@ public class HorarioTwoServlet extends HttpServlet {
         //string para obtener los parametros
         String nom_materia, hor_inicial, hor_final, salon;
 
-        boolean act_traslapes ;
-        boolean inconsistencia;
-
+        boolean act_traslapes , inconsistencia,lunes_validado = false ,martes_validado = false
+                ,miercoles_validado = false ,jueves_validado = false , viernes_validado = false;
+        
         //obtener los cantidad de materias de un dia 
         int materias_lunes = (Integer) objsesion.getAttribute("materias_lunes");
         int materias_martes = (Integer) objsesion.getAttribute("materias_martes");
@@ -68,6 +68,7 @@ public class HorarioTwoServlet extends HttpServlet {
         ArrayList<Materia> listado_traslapes ;
         ArrayList<Inconsistencia_hora> inconsistencias;
         ArrayList<Materia> listado_preeliminar ;
+        
 
         if (materias_lunes > 0) {
             act_traslapes = false;
@@ -111,8 +112,12 @@ public class HorarioTwoServlet extends HttpServlet {
 
             if (listado_traslapes != null && !listado_traslapes.isEmpty()) {
                 request.setAttribute("lista_materias_traslapadas_lunes", listado_traslapes);//<------cambio desde s y  jsp
+            }else{
+                lunes_validado = true ;
             }
             
+        }else{
+            lunes_validado = true ;
         }
         if (materias_martes > 0) {//<------cambio s
             act_traslapes = false;
@@ -156,8 +161,12 @@ public class HorarioTwoServlet extends HttpServlet {
 
             if (listado_traslapes != null && !listado_traslapes.isEmpty()) {
                 request.setAttribute("lista_materias_traslapadas_martes", listado_traslapes);//<------cambio desde s y  jsp
-            }
+            }else{
+            martes_validado = true ;
+        }
             
+        }else{
+            martes_validado = true ;
         }
         
         if (materias_miercoles > 0) {//<------cambio s
@@ -202,8 +211,12 @@ public class HorarioTwoServlet extends HttpServlet {
 
             if (listado_traslapes != null && !listado_traslapes.isEmpty()) {
                 request.setAttribute("lista_materias_traslapadas_miercoles", listado_traslapes);//<------cambio desde s y  jsp
-            }
+            }else{
+            miercoles_validado = true ;
+        }
             
+        }else{
+            miercoles_validado = true ;
         }
         if (materias_jueves > 0) {//<------cambio s
             act_traslapes = false;
@@ -247,8 +260,12 @@ public class HorarioTwoServlet extends HttpServlet {
 
             if (listado_traslapes != null && !listado_traslapes.isEmpty()) {
                 request.setAttribute("lista_materias_traslapadas_jueves", listado_traslapes);//<------cambio desde s y  jsp
-            }
+            }else{
+            jueves_validado = true ;
+        }
             
+        }else{
+            jueves_validado = true ;
         }
         if (materias_viernes > 0) {//<------cambio s
             act_traslapes = false;
@@ -292,8 +309,12 @@ public class HorarioTwoServlet extends HttpServlet {
 
             if (listado_traslapes != null && !listado_traslapes.isEmpty()) {
                 request.setAttribute("lista_materias_traslapadas_viernes", listado_traslapes);//<------cambio desde s y  jsp
-            }
+            }else{
+            viernes_validado = true ;
+        }
             
+        }else{
+            viernes_validado = true ;
         }
         
             rd = request.getRequestDispatcher("/Horario_two.jsp");
